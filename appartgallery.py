@@ -21,3 +21,20 @@ DATABASE = "artgallery.db"
 
 while True:
     userinput = input("\nWelcome to the Art Gallery database!\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n10.View all artists.\n11.View all artists sorted by country.\n12.View all artists sorted by d.o.b.")
+    if userinput == "1":
+
+    elif userinput == "2":
+
+    elif userinput == "3":
+
+    elif userinput == "4":
+
+    elif userinput == "10":
+
+    elif userinput == "11":
+
+    elif userinput == "12":
+
+    else:
+        exit
+    

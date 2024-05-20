@@ -17,7 +17,7 @@ def print_all_artworks_with_artists():
     
     cursor = db.cursor()
 
-    sql = "SELECT Artwork.Name, Artwork.style, Artwork.Year_made, Artwork.Price, Artist.Artist_name, Artist.Date_of_birth, Artist.Country FROM Artwork FULL OUTER JOIN Artist ON Artist.id=Artwork.Artist;"
+    sql = "SELECT Artwork.Name, Artwork.style, Artwork.Year_made, Artwork.Price, Artist.Artist_name, Artist.Date_of_birth, Artist.Country FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist;"
 
     cursor.execute(sql)
 
@@ -28,8 +28,8 @@ def print_all_artworks_with_artists():
     print(f"Name                     Style               Year made      Price     Artist         D.O.B     Country       ")
 
     for Artwork in results:
-
-            print(f"{Artwork[1]:>25}{Artwork[4]:>20}{Artwork[5]:>15}${Artwork[6]:>10}M{Artist[1]:>15}{Artist[2]:>10}{Artist[3]:>15}")
+            
+            print(f"{Artwork[0]:>25}{Artwork[1]:>20}{Artwork[2]:>15}{Artwork[3]:>10}M{Artwork[4]:>15}{Artwork[5]:>10}{Artwork[6]:>15}")
 
         #loop finishes here
             

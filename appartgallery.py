@@ -35,6 +35,31 @@ def print_all_artworks_with_artists():
             
     db.close()
 
+
+def print_all_artworks_sorted_alphabetically():
+    '''Print all artworks with artists sorted alphabetically(A-Z)'''
+    db = sqlite3.connect(DATABASE)
+    
+    cursor = db.cursor()
+
+    sql = "SELECT Artwork.Name, Artwork.style, Artwork.Year_made, Artwork.Price, Artist.Artist_name, Artist.Date_of_birth, Artist.Country FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist ORDER BY Artwork.Name ASC;"
+
+    cursor.execute(sql)
+
+    results = cursor.fetchall()
+
+    #loop through results
+
+    print(f"                       Name               Style    Year made    Price($)             Artist   D.O.B        Country\n")
+
+    for Artwork in results:
+            
+            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>20}{Artwork[5]:>8}{Artwork[6]:>15}")
+
+    #loop finishes here
+        
+    db.close()
+
 #main code
 
 while True:
@@ -47,8 +72,8 @@ while True:
         print_all_artworks_sorted_by_year_asc()
     elif userinput == "4":
         print_all_artworks_sorted_by_price_asc()
-    #elif userinput == "10":
-
+    elif userinput == "5":
+        print_all_artists_sorted_by_name_asc()
     #elif userinput == "11":
 
     #1elif userinput == "12":

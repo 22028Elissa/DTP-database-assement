@@ -124,6 +124,52 @@ def print_all_artists_sorted_by_name_asc():
     #loop finishes here
         
     db.close()
+def print_all_artists_sorted_by_yearborn_asc():
+    '''Print all artworks with artists sorted yearborn ascending'''
+    db = sqlite3.connect(DATABASE)
+    
+    cursor = db.cursor()
+
+    sql = "Select Artist_name, Year_of_birth, Country FROM Artist ORDER BY Year_of_birth ASC;"
+
+    cursor.execute(sql)
+
+    results = cursor.fetchall()
+
+    #loop through results
+
+    print(f"                  Name   Year born        Country\n")
+
+    for Artist in results:
+            
+            print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+
+    #loop finishes here
+        
+    db.close()
+def print_all_artists_sorted_by_country_asc():
+    '''Print all artworks with artists sorted by country ascending'''
+    db = sqlite3.connect(DATABASE)
+    
+    cursor = db.cursor()
+
+    sql = "Select Artist_name, Year_of_birth, Country FROM Artist ORDER BY Country ASC;"
+
+    cursor.execute(sql)
+
+    results = cursor.fetchall()
+
+    #loop through results
+
+    print(f"                  Name   Year born        Country\n")
+
+    for Artist in results:
+            
+            print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+
+    #loop finishes here
+        
+    db.close()
 
 
 #main code
@@ -143,9 +189,9 @@ while True:
     elif userinput == "5":
         print_all_artists_sorted_by_name_asc()
     elif userinput == "6":
-        print_all_artists_sorted_by_country_asc()
+        print_all_artists_sorted_by_yearborn_asc()
     elif userinput == "7":
-        print_all_artists_sorted_by_yearofbirth_asc()
+        print_all_artists_sorted_by_country_asc()
     elif userinput == "8":   
         exit
     else:

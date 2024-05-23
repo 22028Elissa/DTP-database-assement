@@ -13,7 +13,7 @@ def print_all_artworks_with_artists():
     
     cursor = db.cursor()
 
-    sql = "SELECT Artwork.Name, Artwork.style, Artwork.Year_made, Artwork.Price, Artist.Artist_name, Artist.Date_of_birth, Artist.Country FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist;"
+    sql = "SELECT Artwork.Name, Artwork.style, Artwork.Year_made, Artwork.Price, Artist.Artist_name, Artist.Year_of_birth, Artist.Country FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist;"
 
     cursor.execute(sql)
 
@@ -21,11 +21,11 @@ def print_all_artworks_with_artists():
 
     #loop through results
 
-    print(f"                       Name               Style    Year made    Price($)             Artist   D.O.B        Country\n")
+    print(f"                       Name               Style    Year made    Price($)             Artist Year born        Country\n")
 
     for Artwork in results:
             
-            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>20}{Artwork[5]:>8}{Artwork[6]:>15}")
+            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>20}{Artwork[5]:>10}{Artwork[6]:>15}")
 
         #loop finishes here
             
@@ -45,7 +45,7 @@ def print_all_artworks_sorted_alphabetically():
 
     #loop through results
 
-    print(f"                       Name             Artist               Style    Year made    Price($)\n")
+    print(f"                       Name             Artist               Style     Year made    Price($)\n")
 
     for Artwork in results:
             
@@ -61,7 +61,7 @@ def print_all_artworks_sorted_by_year_asc():
     
     cursor = db.cursor()
 
-    sql = "SELECT Artwork.Name, Artwork.style, Artwork.Year_made, Artwork.Price, Artist.Artist_name, Artist.Date_of_birth, Artist.Country FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist ORDER BY Artwork.Year_made ASC;"
+    sql = "SELECT Artwork.Name, Artist.Artist_name, Artwork.style, Artwork.Year_made, Artwork.Price FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist ORDER BY Artwork.Year_made ASC;"
 
     cursor.execute(sql)
 
@@ -69,23 +69,22 @@ def print_all_artworks_sorted_by_year_asc():
 
     #loop through results
 
-    print(f"                       Name               Style    Year made    Price($)             Artist   D.O.B        Country\n")
+    print(f"                       Name             Artist               Style    Year made    Price($)\n")
 
     for Artwork in results:
             
-            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>20}{Artwork[5]:>8}{Artwork[6]:>15}")
-
+            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+    
     #loop finishes here
         
     db.close()
-
 def print_all_artworks_sorted_by_price_asc():
-    '''Print all artworks with artists sorted year ascending'''
+    '''Print all artworks with artists sorted by price ascending'''
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
 
-    sql = "SELECT Artwork.Name, Artwork.style, Artwork.Year_made, Artwork.Price, Artist.Artist_name, Artist.Date_of_birth, Artist.Country FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist ORDER BY Artwork.Price ASC;"
+    sql = "SELECT Artwork.Name, Artist.Artist_name, Artwork.style, Artwork.Year_made, Artwork.Price FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist ORDER BY Artwork.Price ASC;"
 
     cursor.execute(sql)
 
@@ -93,22 +92,22 @@ def print_all_artworks_sorted_by_price_asc():
 
     #loop through results
 
-    print(f"                       Name               Style    Year made    Price($)             Artist   D.O.B        Country\n")
+    print(f"                       Name             Artist               Style    Year made    Price($)\n")
 
     for Artwork in results:
             
-            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>20}{Artwork[5]:>8}{Artwork[6]:>15}")
+            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
 
     #loop finishes here
         
     db.close()
-
-    '''Print all artworks with artists sorted year ascending'''
+def print_all_artists_sorted_by_name_asc():
+    '''Print all artworks with artists sorted name ascending'''
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
 
-    sql = "SELECT Artwork.Name, Artwork.style, Artwork.Year_made, Artwork.Price, Artist.Artist_name, Artist.Date_of_birth, Artist.Country FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist ORDER BY Artwork.Year_made ASC;"
+    sql = "Select Artist_name, Year_of_birth, Country FROM Artist ORDER BY Artist_name ASC;"
 
     cursor.execute(sql)
 
@@ -116,11 +115,11 @@ def print_all_artworks_sorted_by_price_asc():
 
     #loop through results
 
-    print(f"                       Name               Style    Year made    Price($)             Artist   D.O.B        Country\n")
+    print(f"                  Name   Year born        Country\n")
 
-    for Artwork in results:
+    for Artist in results:
             
-            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>20}{Artwork[5]:>8}{Artwork[6]:>15}")
+            print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
 
     #loop finishes here
         
@@ -132,7 +131,7 @@ def print_all_artworks_sorted_by_price_asc():
 print("Welcome to the Art Gallery database!\n")
 #username = input("What is your name?")
 while True:
-    userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n10.View all artists.\n11.View all artists sorted by country.\n12.View all artists sorted by d.o.b.\n")
+    userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists.\n6.View all artists sorted by country.\n7.View all artists sorted by year born\n8.Exit\n")
     if userinput == "1":
         print_all_artworks_with_artists()
     elif userinput == "2":
@@ -143,10 +142,12 @@ while True:
         print_all_artworks_sorted_by_price_asc()
     elif userinput == "5":
         print_all_artists_sorted_by_name_asc()
-    #elif userinput == "11":
-
-    #1elif userinput == "12":
-
-    else:
+    elif userinput == "6":
+        print_all_artists_sorted_by_country_asc()
+    elif userinput == "7":
+        print_all_artists_sorted_by_yearofbirth_asc()
+    elif userinput == "8":   
         exit
+    else:
+        print("That was not a valid option. Please try again :O")
     

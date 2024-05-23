@@ -205,7 +205,7 @@ while True:
 
         #    print_one_painting_user_input()
         #elif paintinguserinput == "b":
-  '''      def print_one_painting_user_input():
+def print_one_painting_user_input():
     '''Print one painting that the user chooses'''
     db = sqlite3.connect(DATABASE)
     
@@ -226,4 +226,4 @@ while True:
     
     #loop finishes here
         
-    db.close()'''
+    db.close()

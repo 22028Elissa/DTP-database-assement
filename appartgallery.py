@@ -30,7 +30,6 @@ def print_all_artworks_with_artists():
         #loop finishes here
             
     db.close()
-
 def print_all_artworks_sorted_alphabetically():
     '''Print all artworks with artists sorted alphabetically(A-Z)'''
     db = sqlite3.connect(DATABASE)
@@ -54,7 +53,6 @@ def print_all_artworks_sorted_alphabetically():
     #loop finishes here
         
     db.close()
-
 def print_all_artworks_sorted_by_year_asc():
     '''Print all artworks with artists sorted year ascending'''
     db = sqlite3.connect(DATABASE)
@@ -171,7 +169,6 @@ def print_all_artists_sorted_by_country_asc():
         
     db.close()
 
-
 #main code
 #Welcome user
 print("Welcome to the Art Gallery database!\n")
@@ -192,8 +189,41 @@ while True:
         print_all_artists_sorted_by_yearborn_asc()
     elif userinput == "7":
         print_all_artists_sorted_by_country_asc()
-    elif userinput == "8":   
-        exit
+    #elif userinput == "8":   
+     
+    elif userinput == "9":   
+        break 
     else:
         print("That was not a valid option. Please try again :O")
     
+#elif paintinguserinput = "b"
+            #print_all_artworks_only_name()
+        #Choose from a list\nC.
+          # styleuserinput = input("What is the name of the style you would like?\na.Enter the name.\nb.Exit\n")
+        #if paintinguserinput == "a":
+         #   namepaintinguserinput = input("Enter the name: ")
+
+        #    print_one_painting_user_input()
+        #elif paintinguserinput == "b":
+  '''      def print_one_painting_user_input():
+    '''Print one painting that the user chooses'''
+    db = sqlite3.connect(DATABASE)
+    
+    cursor = db.cursor()
+
+    sql = "SELECT Name, Style, Artist_name, year_made, price,  FROM Artwork JOIN Artist ON Artist.id=Artwork.id WHERE name = '';"
+
+    cursor.execute(sql)
+
+    results = cursor.fetchall()
+
+    #loop through results
+
+    print(f"                       Name             Artist               Style     Year made    Price($)\n")
+
+    
+    print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+    
+    #loop finishes here
+        
+    db.close()'''

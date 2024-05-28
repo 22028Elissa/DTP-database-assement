@@ -79,9 +79,31 @@ def print_all_artists_sorted_(sortedway):
         
     db.close()
 
+def print_all_artworks_sorted_with_where(sortedway):
+    '''Print all artworks with Where sorted by variable with artists'''
+    db = sqlite3.connect(DATABASE)
     
-'''def print_all_artists_with same country()
-Print all artworks with artists sorted by country ascending
+    cursor = db.cursor()
+
+    sql = f"SELECT Artwork.Name, Artist.Artist_name, Artwork.style, Artwork.Year_made, Artwork.Price FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist ORDER BY {sortedway} ASC;"
+
+    cursor.execute(sql)
+
+    results = cursor.fetchall()
+
+    #loop through results
+
+    print(f"                       Name             Artist               Style     Year made    Price($)\n")
+
+    for Artwork in results:
+            
+            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+
+    #loop finishes here
+        
+    db.close()
+ 
+def print_all_artists_with same country()
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
@@ -102,14 +124,14 @@ Print all artworks with artists sorted by country ascending
 
     #loop finishes here
         
-    db.close()'''
+    db.close()
 
 #main code
 #Welcome user
 print("Welcome to the Art Gallery database!\n")
 #username = input("What is your name?")
 while True:
-    userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists.\n6.View all artists sorted by country.\n7.View all artists sorted by year born\n8.Exit\n")
+    userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists.\n6.View all artists sorted by country.\n7.View all artists sorted by year born\n8. Choose a specific column to sort by.\n9.Exit\n")
     if userinput == "1":
         print_all_artworks_with_artists()
     elif userinput == "2":
@@ -133,10 +155,13 @@ while True:
     elif userinput == "7":
         sortedway = 'Artist.Year_of_birth'
         print_all_artists_sorted_(sortedway)
-    #elif userinput == "8":   
-        #print_all_artists_sorted_by_country_ascd()
-    #elif userinput == "9":   
-        #break 
+    elif userinput == "8":   
+        eightinput = print("1.Specifics on Artworks.\n2.Specifics on Artworks.\n")
+        if eightinput == "1":
+            eightinput = print("\n1.To find one artwrok name.\n2.Find all Artworks from one specific artist.\n3.One specifci styyle. year made (x-y) one price ")
+        print_all_artists_sorted_by_country_ascd()
+    elif userinput == "9":   
+        break 
     else:
         print("That was not a valid option. Please try again :O")
     

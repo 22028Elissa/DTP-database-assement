@@ -32,7 +32,7 @@ def print_all_artworks_with_artists():
     db.close()
 
 def print_all_artworks_sorted_(sortedway):
-    '''Print all artworks  sorted alphabetically(A-Z)with artists'''
+    '''Print all artworks  sorted by variable with artists'''
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
@@ -56,12 +56,12 @@ def print_all_artworks_sorted_(sortedway):
     db.close()
 
 def print_all_artists_sorted_(sortedway):
-    '''Print all artworks with artists sorted name ascending'''
+    '''Print all artworks with artists sorted by variable'''
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
 
-    sql = "Select Artist_name, Year_of_birth, Country FROM Artist ORDER BY {sorteway} ASC;"
+    sql = "Select Artist_name, Year_of_birth, Country FROM Artist ORDER BY {sortedway} ASC;"
 
     cursor.execute(sql)
 
@@ -128,16 +128,15 @@ while True:
         sortedway = 'Artist.Artist_name'
         print_all_artists_sorted_(sortedway)
     elif userinput == "6":
-        sortedway = ''
+        sortedway = 'Artist.Country'
         print_all_artists_sorted_(sortedway)
     elif userinput == "7":
-        sortedway = 'Artwork.Year_of_birth'
+        sortedway = 'Artist.Year_of_birth'
         print_all_artists_sorted_(sortedway)
-    elif userinput == "8":   
-        break
+    #elif userinput == "8":   
         #print_all_artists_sorted_by_country_ascd()
-    elif userinput == "9":   
-        break 
+    #elif userinput == "9":   
+        #break 
     else:
         print("That was not a valid option. Please try again :O")
     

@@ -157,13 +157,30 @@ while True:
         sortedway = 'Artist.Year_of_birth'
         print_all_artists_sorted_(sortedway)
     elif userinput == "8":   
-        eightinput = print("1.Specifics on Artworks.\n2.Specifics on Artworks.\n")
+        eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artworks.\n")
         if eightinput == "1":
-            eightinput = print("\n1.To find one artwork.\n2.Find all Artworks from one specific artist.\n3.All artworks with one style\n4. All artworks where the year made (x-y)\n5.Exit ")
+            eightinput = input("\n1.To find one 'artwork'.\n2.Find all Artworks from one specific artist.\n3.All artworks with one style\n4. All artworks where the year made (x-y)\n5.Exit ")
+            if eightinput == "1":
+                column = "Artwork.Name"
+                specific = input("Please type the name of the artwork you would like(correctly with capitals): ")
+                print_all_artworks_sorted_with_where(specific)
+                #make exceptions like invalid input
+            if eightinput == "2":
+                column = "Artist.Artist_name"
+                specific = input("Please type the name of the artist you would like(correctly with capitals): ")
+                print_all_artists_sorted_with_where(specific)
+            if eightinput == "3":
+                column = "Artwork.Style"
+                specific = input("Please type the style of the artworks you would like(correctly with capitals): ")
+                print_all_artworks_sorted_with_where(specific)
+            #if eightinput == "4":
+                column = "Artwork.Year_made"
+                x,y = input("Please type the years of the artworks you would like(example- 1400 1500): ")
+
+                print_all_artworks_sorted_with_where(specific)
         else:
             print("That was not a valid option.")
-            if eightinput = "1"
-                eightinput = ()
+            
     elif userinput == "9":   
         break 
     else:

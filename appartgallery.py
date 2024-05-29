@@ -108,7 +108,7 @@ def print_all_artists_sorted_with_where(specific):
     
     cursor = db.cursor()
 
-    sql = f"Select Artist_name, Year_of_birth, Country FROM Artist WHERE {column} = '{specific}' ORDER BY Country ASC;"
+    sql = f"Select Artist_name, Year_of_birth, Country FROM Artist WHERE {column} = '{specific}' ORDER BY Artist_name ASC;"
 
     cursor.execute(sql)
 
@@ -126,12 +126,58 @@ def print_all_artists_sorted_with_where(specific):
         
     db.close()
 
+def print_all_artworks_sorted_with_where_with_between(specific):
+    '''Print all artworks with Where sorted by variable with artists'''
+    db = sqlite3.connect(DATABASE)
+    
+    cursor = db.cursor()
+
+    sql = f"SELECT Artwork.Name, Artist.Artist_name, Artwork.style, Artwork.Year_made, Artwork.Price FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist WHERE {column} BETWEEN '{x}' AND '{y}' ORDER BY Artwork.Name ASC;"
+
+    cursor.execute(sql)
+
+    results = cursor.fetchall()
+
+    #loop through results
+
+    print(f"                       Name             Artist               Style     Year made    Price($)\n")
+
+    for Artwork in results:
+            
+            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+
+    #loop finishes here
+        
+    db.close()
+
+def print_all_artists_sorted_with_where_with_between(specific):
+    db = sqlite3.connect(DATABASE)
+    
+    cursor = db.cursor()
+
+    sql = f"Select Artist_name, Year_of_birth, Country FROM Artist WHERE {column} BETWEEN '{x}' AND '{y}' ORDER BY Artist_name ASC;"
+
+    cursor.execute(sql)
+
+    results = cursor.fetchall()
+
+    #loop through results
+
+    print(f"                  Name   Year born        Country\n")
+
+    for Artist in results:
+            
+            print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+
+    #loop finishes here
+        
+    db.close()
 #main code
 #Welcome user
 print("Welcome to the Art Gallery database!\n")
 #username = input("What is your name?")
 while True:
-    userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists.\n6.View all artists sorted by country.\n7.View all artists sorted by year born\n8. Choose a specific column to sort by.\n9.Exit\n")
+    userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists.\n6.View all artists sorted by country.\n7.View all artists sorted by year born\n8.Choose a specific column or name to sort by.\n9.Exit\n")
     if userinput == "1":
         print_all_artworks_with_artists()
     elif userinput == "2":

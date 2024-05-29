@@ -61,7 +61,7 @@ def print_all_artists_sorted_(sortedway):
     
     cursor = db.cursor()
 
-    sql = "Select Artist_name, Year_of_birth, Country FROM Artist ORDER BY {sortedway} ASC;"
+    sql = f"Select Artist_name, Year_of_birth, Country FROM Artist ORDER BY {sortedway} ASC;"
 
     cursor.execute(sql)
 
@@ -79,13 +79,13 @@ def print_all_artists_sorted_(sortedway):
         
     db.close()
 
-def print_all_artworks_sorted_with_where(sortedway):
+def print_all_artworks_sorted_with_where(specific):
     '''Print all artworks with Where sorted by variable with artists'''
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
 
-    sql = f"SELECT Artwork.Name, Artist.Artist_name, Artwork.style, Artwork.Year_made, Artwork.Price FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist ORDER BY {sortedway} ASC;"
+    sql = f"SELECT Artwork.Name, Artist.Artist_name, Artwork.style, Artwork.Year_made, Artwork.Price FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist WHERE {column} = '{specific}' ORDER BY Artwork.Name ASC;"
 
     cursor.execute(sql)
 
@@ -103,12 +103,12 @@ def print_all_artworks_sorted_with_where(sortedway):
         
     db.close()
  
-def print_all_artists_with same country()
+def print_all_artists_sorted_with_where(specific):
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
-    iuser = input("Enter a column name: ")
-    sql = f"Select Artist_name, Year_of_birth, Country FROM Artist WHERE Country = '{iuser}' ORDER BY Country ASC;"
+
+    sql = f"Select Artist_name, Year_of_birth, Country FROM Artist WHERE {column} = '{specific}' ORDER BY Country ASC;"
 
     cursor.execute(sql)
 
@@ -147,6 +147,7 @@ while True:
         sortedway = 'Artwork.Price'
         print_all_artworks_sorted_(sortedway)
     elif userinput == "5":
+        #artist price
         sortedway = 'Artist.Artist_name'
         print_all_artists_sorted_(sortedway)
     elif userinput == "6":

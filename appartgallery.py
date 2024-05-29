@@ -159,8 +159,11 @@ while True:
     elif userinput == "8":   
         eightinput = print("1.Specifics on Artworks.\n2.Specifics on Artworks.\n")
         if eightinput == "1":
-            eightinput = print("\n1.To find one artwrok name.\n2.Find all Artworks from one specific artist.\n3.One specifci styyle. year made (x-y) one price ")
-        print_all_artists_sorted_by_country_ascd()
+            eightinput = print("\n1.To find one artwork.\n2.Find all Artworks from one specific artist.\n3.All artworks with one style\n4. All artworks where the year made (x-y)\n5.Exit ")
+        else:
+            print("That was not a valid option.")
+            if eightinput = "1"
+                eightinput = ()
     elif userinput == "9":   
         break 
     else:

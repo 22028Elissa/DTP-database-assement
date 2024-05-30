@@ -150,7 +150,7 @@ def print_all_artworks_sorted_with_where_with_between(specific):
         
     db.close()
 
-def print_all_artists_sorted_with_where_with_between(specific):
+def print_all_artists_sorted_with_where_with_between(x,y):
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
@@ -205,7 +205,7 @@ while True:
     elif userinput == "8":   
         eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artworks.\n")
         if eightinput == "1":
-            eightinput = input("\n1.To find one 'artwork'.\n2.Find all Artworks from one specific artist.\n3.All artworks with one style\n4. All artworks where the year made (x-y)\n5.Exit ")
+            eightinput = input("\n1.To find one 'artwork'.\n2.Find all Artworks from one specific artist.\n3.All artworks with one style\n4.All artworks where the year made fall under(x-y)\n5.Exit\n")
             if eightinput == "1":
                 column = "Artwork.Name"
                 specific = input("Please type the name of the artwork you would like(correctly with capitals): ")
@@ -225,11 +225,14 @@ while True:
                 while True:
                     try:
                         x = int(x)
+                        y = int(y)
+                        print_all_artworks_sorted_with_where_with_between(x,y)
                     except ValueError:
                         print("Please enter numbers seperated by a comma.")    
-                print_all_artworks_sorted_with_where_with_between(specific)
             else:
                 print("That was not a valid option.") 
+        if eightinput = "2":
+            eightinput = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.All artists born between the years you choose(x-y)\n5.Exit\n")
         else:
             print("That was not a valid option.")
             

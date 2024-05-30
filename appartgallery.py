@@ -203,56 +203,57 @@ while True:
         sortedway = 'Artist.Year_of_birth'
         print_all_artists_sorted_(sortedway)
     elif userinput == "8":   
-        eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artworks.\n")
-        if eightinput == "1":
-            eightinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Exit\n")
+        eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artists.\n")
+        while True:    
             if eightinput == "1":
-                column = "Artwork.Name"
-                specific = input("Please type the name of the artwork you would like(correctly with capitals): ")
-                print_all_artworks_sorted_with_where(specific)
-                #make exceptions like invalid input
-            elif eightinput == "2":
-                column = "Artwork.Style"
-                specific = input("Please type the style of the artworks you would like(correctly with capitals): ")
-                print_all_artworks_sorted_with_where(specific)
-            elif eightinput == "3":
-                column = "Artwork.Year_made"
-                x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
-                while True:
-                    try:
-                        x = int(x)
-                        y = int(y)
-                        print_all_artworks_sorted_with_where_with_between(x,y)
-                    except ValueError:
-                        print("Please enter numbers seperated by a comma.")    
-            elif eightinput == "4":
-                break
+                artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Exit\n")
+                
+                if artvsartistinput == "1":
+                    column = "Artwork.Name"
+                    specific = input("Please type the name of the artwork you would like(correctly with capitals): ")
+                    print_all_artworks_sorted_with_where(specific)
+                    #make exceptions like invalid input
+                elif artvsartistinput == "2":
+                    column = "Artwork.Style"
+                    specific = input("Please type the style of the artworks you would like(correctly with capitals): ")
+                    print_all_artworks_sorted_with_where(specific)
+                elif artvsartistinput == "3":
+                    column = "Artwork.Year_made"
+                    x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
+                    while True:
+                        try:
+                            x = int(x)
+                            y = int(y)
+                            print_all_artworks_sorted_with_where_with_between(x,y)
+                        except ValueError:
+                                    print("Please enter numbers seperated by a comma.")    
+                elif artvsartistinput == "4":
+                    break
+                else:
+                    print("That was not a valid option.") 
+            if eightinput == "2":
+                artistvsart = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.Exit\n")
+                if artistvsart == "1":
+                    column = "Artist.Artist_name"
+                    specific = input("Please type the name of the artist you would like(correctly with capitals): ")
+                    print_all_artists_sorted_with_where(specific)
+                elif artistvsart == "2":
+                    column = "Artist.Country"
+                    specific = input("Please type the name of the country you would like(correctly with capitals): ")
+                    print_all_artists_sorted_with_where(specific)
+                elif artistvsart == "3":
+                    column = "Artist.Artist_name"
+                    specific = input("Please type the name of the artist you would like(correctly with capitals): ")
+                    print_all_artworks_sorted_with_where(specific)
+                elif artistvsart == "4":
+                    break
+                else:
+                    print("That was not a valid option.") 
             else:
                 print("That was not a valid option.") 
-        if eightinput = "2":
-            eightinput = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.All artists born between the years you choose(x-y)\n5.Exit\n")
-            if eightinput == "1":
-                column = "Artist.Artist_name"
-                specific = input("Please type the name of the artist you would like(correctly with capitals): ")
-                print_all_artworks_sorted_with_where(specific)
-            elif eightinput == "2":
-                column = "Artist.Country"
-                specific = input("Please type the name of the country you would like(correctly with capitals): ")
-            elif eightinput == "3":
-                column = "Artist.Artist_name"
-                specific = input("Please type the name of the artist you would like(correctly with capitals): ")
-                print_all_artists_sorted_with_where(specific)
-            elif eightinput == "4":
-                column = "Artist.DateofBirth"
-            elif eightinput == "5":
-                break
-            else:
-                print("That was not a valid option.") 
-        else:
-            print("That was not a valid option.")
-            
     elif userinput == "9":   
         break 
     else:
-        print("That was not a valid option. Please try again :O")
+        print("That was not a valid option. Please try again :O")  
+    
     

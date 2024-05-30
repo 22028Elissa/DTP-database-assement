@@ -211,19 +211,25 @@ while True:
                 specific = input("Please type the name of the artwork you would like(correctly with capitals): ")
                 print_all_artworks_sorted_with_where(specific)
                 #make exceptions like invalid input
-            if eightinput == "2":
+            elif eightinput == "2":
                 column = "Artist.Artist_name"
                 specific = input("Please type the name of the artist you would like(correctly with capitals): ")
                 print_all_artists_sorted_with_where(specific)
-            if eightinput == "3":
+            elif eightinput == "3":
                 column = "Artwork.Style"
                 specific = input("Please type the style of the artworks you would like(correctly with capitals): ")
                 print_all_artworks_sorted_with_where(specific)
-            #if eightinput == "4":
+            elif eightinput == "4":
                 column = "Artwork.Year_made"
-                x,y = input("Please type the years of the artworks you would like(example- 1400 1500): ")
-
-                print_all_artworks_sorted_with_where(specific)
+                x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
+                while True:
+                    try:
+                        x = int(x)
+                    except ValueError:
+                        print("Please enter numbers seperated by a comma.")    
+                print_all_artworks_sorted_with_where_with_between(specific)
+            else:
+                print("That was not a valid option.") 
         else:
             print("That was not a valid option.")
             

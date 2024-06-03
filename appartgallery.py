@@ -218,7 +218,6 @@ while True:
                     print_all_artworks_sorted_with_where(specific)
                 elif artvsartistinput == "3":
                     column = "Artwork.Year_made"
-                    
                     while True:
                         try:
                             x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
@@ -233,7 +232,7 @@ while True:
                 else:
                     print("That was not a valid option.") 
             elif eightinput == "2":
-                artistvsart = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.Exit\n")
+                artistvsart = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.Find all artists born in specific years.\n5.Exit\n")
                 if artistvsart == "1":
                     column = "Artist.Artist_name"
                     specific = input("Please type the name of the artist you would like(correctly with capitals): ")
@@ -247,6 +246,17 @@ while True:
                     specific = input("Please type the name of the artist you would like(correctly with capitals): ")
                     print_all_artworks_sorted_with_where(specific)
                 elif artistvsart == "4":
+                    column = "Year_of_birth"
+                    while True:
+                        try:
+                            x,y = input("Please type the years of artist's birth years you would like(example- 1400,1500): ").split(",")
+                            x = int(x)
+                            y = int(y)
+                            print_all_artists_sorted_with_where_with_between(x,y)
+                            break
+                        except ValueError:
+                                print("Please enter numbers seperated by a comma.")    
+                elif artistvsart == "5":
                     break
                 else:
                     print("That was not a valid option.") 

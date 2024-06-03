@@ -177,7 +177,7 @@ def print_all_artists_sorted_with_where_with_between(x,y):
 print("Welcome to the Art Gallery database!\n")
 #username = input("What is your name?")
 while True:
-    userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists sorted alphabetically.\n6.View all artists sorted by country.\n7.View all artists sorted by year born\n8.Choose a specific column or name to sort by.\n9.Exit\n")
+    userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists sorted alphabetically.\n6.View all artists sorted by year born.\n7.View all artists sorted by country\n8.Choose a specific column or name to sort by.\n9.Exit\n")
     if userinput == "1":
         print_all_artworks_with_artists()
     elif userinput == "2":
@@ -197,10 +197,10 @@ while True:
         sortedway = 'Artist.Artist_name'
         print_all_artists_sorted_(sortedway)
     elif userinput == "6":
-        sortedway = 'Artist.Country'
+        sortedway = 'Artist.Year_of_birth'
         print_all_artists_sorted_(sortedway)
     elif userinput == "7":
-        sortedway = 'Artist.Year_of_birth'
+        sortedway = 'Artist.Country'
         print_all_artists_sorted_(sortedway)
     elif userinput == "8":   
         eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artists.\n")

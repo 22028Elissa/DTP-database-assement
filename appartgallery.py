@@ -126,7 +126,7 @@ def print_all_artists_sorted_with_where(specific):
         
     db.close()
 
-def print_all_artworks_sorted_with_where_with_between(specific):
+def print_all_artworks_sorted_with_where_with_between(x,y):
     '''Print all artworks with Where sorted by variable with artists'''
     db = sqlite3.connect(DATABASE)
     
@@ -218,14 +218,16 @@ while True:
                     print_all_artworks_sorted_with_where(specific)
                 elif artvsartistinput == "3":
                     column = "Artwork.Year_made"
-                    x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
+                    
                     while True:
                         try:
+                            x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
                             x = int(x)
                             y = int(y)
                             print_all_artworks_sorted_with_where_with_between(x,y)
+                            break
                         except ValueError:
-                                    print("Please enter numbers seperated by a comma.")    
+                                print("Please enter numbers seperated by a comma.")    
                 elif artvsartistinput == "4":
                     break
                 else:

@@ -207,7 +207,6 @@ while True:
         while True:    
             if eightinput == "1":
                 artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Exit\n")
-                
                 if artvsartistinput == "1":
                     column = "Artwork.Name"
                     specific = input("Please type the name of the artwork you would like(correctly with capitals): ")
@@ -231,7 +230,7 @@ while True:
                     break
                 else:
                     print("That was not a valid option.") 
-            if eightinput == "2":
+            elif eightinput == "2":
                 artistvsart = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.Exit\n")
                 if artistvsart == "1":
                     column = "Artist.Artist_name"

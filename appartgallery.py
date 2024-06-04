@@ -7,6 +7,8 @@ DATABASE = "artgallery.db"
 
 #functions
 
+#login/create acc
+
 def print_all_artworks_with_artists():
     '''Print all artworks with artists nicely for option 1'''
     db = sqlite3.connect(DATABASE)
@@ -85,7 +87,7 @@ def print_all_artworks_sorted_with_where(specific):
     
     cursor = db.cursor()
 
-    sql = f"SELECT Artwork.Name, Artist.Artist_name, Artwork.style, Artwork.Year_made, Artwork.Price FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist WHERE {column} = '{specific}' ORDER BY Artwork.Name ASC;"
+    sql = (f"SELECT Artwork.Name, Artist.Artist_name, Artwork.style, Artwork.Year_made, Artwork.Price FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist WHERE {column} =  '{specific}' ORDER BY Artwork.Name ASC;")
 
     cursor.execute(sql)
 
@@ -180,6 +182,10 @@ def print_all_artists_sorted_with_where_with_between(x,y):
 #main code
 #Welcome user
 print("Welcome to the Art Gallery database!\n")
+#print("If you would just like to view the artworks but don't want to buy them, username: guest, password: gpassword")
+#while True:
+#    log = input("\n1. Login\n2. Create account.\n")
+#login system
 #Loop fof user options.
 while True:
     #Ask for user input

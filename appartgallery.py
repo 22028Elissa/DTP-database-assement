@@ -224,33 +224,34 @@ while True:
             if eightinput == "1":
                 #These are options relating to artworks.
                 artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Exit\n")
-                if artvsartistinput == "1":
-                    #this options finds a specific artwork the user searches for.
-                    column = "Artwork.Name"
-                    specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
-                    print_all_artworks_sorted_with_where(specific)
-                elif artvsartistinput == "2":
-                    #This option finds all artworks with a specific style the user would like.
-                    column = "Artwork.Style"
-                    specific = input("Please type the style of the artworks you would like.(correctly with capitals): ")
-                    print_all_artworks_sorted_with_where(specific)
-                elif artvsartistinput == "3":
-                    #This options finds all artworks made between 2 years the user chooses.
-                    column = "Artwork.Year_made"
-                    while True:
-                        try:
-                            x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
-                            x = int(x)
-                            y = int(y)
-                            print_all_artworks_sorted_with_where_with_between(x,y)
-                            break
-                        except ValueError:
-                            #This catches exceptions where the input are not numbers.
-                            print("Please enter numbers seperated by a comma.")    
-                elif artvsartistinput == "4":
-                    break
-                else:
-                    print("That was not a valid option.") 
+                while True:
+                    if artvsartistinput == "1":
+                        #this options finds a specific artwork the user searches for.
+                        column = "Artwork.Name"
+                        specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
+                        print_all_artworks_sorted_with_where(specific)
+                    elif artvsartistinput == "2":
+                        #This option finds all artworks with a specific style the user would like.
+                        column = "Artwork.Style"
+                        specific = input("Please type the style of the artworks you would like.(correctly with capitals): ")
+                        print_all_artworks_sorted_with_where(specific)
+                    elif artvsartistinput == "3":
+                        #This options finds all artworks made between 2 years the user chooses.
+                        column = "Artwork.Year_made"
+                        while True:
+                            try:
+                                x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
+                                x = int(x)
+                                y = int(y)
+                                print_all_artworks_sorted_with_where_with_between(x,y)
+                                break
+                            except ValueError:
+                                #This catches exceptions where the input are not numbers.
+                                print("Please enter numbers seperated by a comma.")    
+                    elif artvsartistinput == "4":
+                        break
+                    else:
+                        print("That was not a valid option.") 
             elif eightinput == "2":
                 artistvsart = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.Find all artists born in specific years.\n5.Exit\n")
                 #These are options relating to artists.

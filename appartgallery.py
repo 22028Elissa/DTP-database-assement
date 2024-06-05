@@ -219,11 +219,11 @@ while True:
         print_all_artists_sorted_(sortedway)
     elif userinput == "8":   
         #There are more options including user searches.
-        eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artists.\n3.Break\n")
+        eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artists.\n3.Return\n")
         while True:    
             if eightinput == "1":
                 #These are options relating to artworks.
-                artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Exit\n")
+                artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Return\n")
                 while True:
                     if artvsartistinput == "1":
                         #this options finds a specific artwork the user searches for.
@@ -253,37 +253,38 @@ while True:
                     else:
                         print("That was not a valid option.") 
             elif eightinput == "2":
-                artistvsart = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.Find all artists born in specific years.\n5.Exit\n")
+                artistvsart = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.Find all artists born in specific years.\n5.Return\n")
                 #These are options relating to artists.
-                if artistvsart == "1":
-                    #This brings up specific information about only one artist
-                    column = "Artist.Artist_name"
-                    specific = input("Please type the name of the artist you would like(correctly with capitals): ")
-                    print_all_artists_sorted_with_where(specific)
-                elif artistvsart == "2":
-                    #This find all artists from a country the user chooses.
-                    column = "Artist.Country"
-                    specific = input("Please type the name of the country you would like(correctly with capitals): ")
-                    print_all_artists_sorted_with_where(specific)
-                elif artistvsart == "3":
-                    #This finds all paintings from one specific artist.
-                    column = "Artist.Artist_name"
-                    specific = input("Please type the name of the artist for the artworks you would like(correctly with capitals): ")
-                    print_all_artworks_sorted_with_where(specific)
-                elif artistvsart == "4":
-                    column = "Year_of_birth"
-                    #This finds all artists that were born between 2 years that the user chooses.
-                    while True:
-                        try:
-                            x,y = input("Please type the years of artist's birth years you would like(example- 1400,1500): ").split(",")
-                            x = int(x)
-                            y = int(y)
-                            print_all_artists_sorted_with_where_with_between(x,y)
-                            break
-                        except ValueError:
-                                print("Please enter numbers seperated by a comma.")    
-                elif artistvsart == "5":
-                    break
+                while True:
+                    if artistvsart == "1":
+                        #This brings up specific information about only one artist
+                        column = "Artist.Artist_name"
+                        specific = input("Please type the name of the artist you would like(correctly with capitals): ")
+                        print_all_artists_sorted_with_where(specific)
+                    elif artistvsart == "2":
+                        #This find all artists from a country the user chooses.
+                        column = "Artist.Country"
+                        specific = input("Please type the name of the country you would like(correctly with capitals): ")
+                        print_all_artists_sorted_with_where(specific)
+                    elif artistvsart == "3":
+                        #This finds all paintings from one specific artist.
+                        column = "Artist.Artist_name"
+                        specific = input("Please type the name of the artist for the artworks you would like(correctly with capitals): ")
+                        print_all_artworks_sorted_with_where(specific)
+                    elif artistvsart == "4":
+                        column = "Year_of_birth"
+                        #This finds all artists that were born between 2 years that the user chooses.
+                        while True:
+                            try:
+                                x,y = input("Please type the years of artist's birth years you would like(example- 1400,1500): ").split(",")
+                                x = int(x)
+                                y = int(y)
+                                print_all_artists_sorted_with_where_with_between(x,y)
+                                break
+                            except ValueError:
+                                    print("Please enter numbers seperated by a comma.")    
+                    elif artistvsart == "5":
+                        break
                 else:
                     print("That was not a valid option.") 
             elif eightinput == "3":

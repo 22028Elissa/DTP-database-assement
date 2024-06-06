@@ -93,16 +93,21 @@ def print_all_artworks_sorted_with_where(specific):
 
     results = cursor.fetchall()
 
-    #loop through results
+    #if there are results
+    if results:
+    
+        #loop through results
 
-    print(f"                       Name             Artist               Style     Year made    Price($)\n")
+        print(f"                       Name             Artist               Style     Year made    Price($)\n")
 
-    for Artwork in results:
-            
-            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+        for Artwork in results:
+                
+                print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
 
-    #loop finishes here
-        
+        #loop finishes here
+    else:
+        print(f"\nThere {printcolumn} {specific}.")
+
     db.close()
  
 def print_all_artists_sorted_with_where(specific):
@@ -128,7 +133,7 @@ def print_all_artists_sorted_with_where(specific):
                 print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
                 #loop finishes here
     else:
-        print(f"\nThere were no {printcolumn}/s with {specific}.")
+        print(f"\nThere {printcolumn} {specific}.")
             
         
     db.close()
@@ -172,15 +177,18 @@ def print_all_artists_sorted_with_where_with_between(x,y):
 
     results = cursor.fetchall()
 
-    #loop through results
+    if results:
+        #loop through results
 
-    print(f"                  Name   Year born        Country\n")
+        print(f"                  Name   Year born        Country\n")
 
-    for Artist in results:
-            
-            print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+        for Artist in results:
+                
+                print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+                #loop finishes here
 
-    #loop finishes here
+    else:
+        print(f"There were no artist born in the years {x} and {y}.")
         
     db.close()
 
@@ -234,14 +242,14 @@ while True:
                     artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Return\n")
                     if artvsartistinput == "1":
                         #this options finds a specific artwork the user searches for.
-                        printcolumn = "Artwork/s"
+                        printcolumn = "was no artwork called "
                         column = "Artwork.Name"
                         specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
                         print_all_artworks_sorted_with_where(specific)
                     elif artvsartistinput == "2":
                         #This option finds all artworks with a specific style the user would like.
                         column = "Artwork.Style"
-                        printcolumn = "Style/s"
+                        printcolumn = "were no artworks in the style"
                         specific = input("Please type the style of the artworks you would like.(correctly with capitals): ")
                         print_all_artworks_sorted_with_where(specific)
                     elif artvsartistinput == "3":
@@ -268,19 +276,19 @@ while True:
                     if artistvsart == "1":
                         #This brings up specific information about only one artist
                         column = "Artist.Artist_name"
-                        printcolumn = "Artist/s"
+                        printcolumn = "was no Artist called"
                         specific = input("Please type the name of the artist you would like(correctly with capitals): ")
                         print_all_artists_sorted_with_where(specific)
                     elif artistvsart == "2":
                         #This find all artists from a country the user chooses.
                         column = "Artist.Country"
-                        printcolumn = "Country/ies"
+                        printcolumn = "were no artworks from"
                         specific = input("Please type the name of the country you would like(correctly with capitals): ")
                         print_all_artists_sorted_with_where(specific)
                     elif artistvsart == "3":
                         #This finds all paintings from one specific artist.
                         column = "Artist.Artist_name"
-                        printcolumn = "Artist/s"
+                        printcolumn = "was no Artist called"
                         specific = input("Please type the name of the artist for the artworks you would like(correctly with capitals): ")
                         print_all_artworks_sorted_with_where(specific)
                     elif artistvsart == "4":

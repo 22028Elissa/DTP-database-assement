@@ -219,8 +219,8 @@ while True:
         print_all_artists_sorted_(sortedway)
     elif userinput == "8":   
         #There are more options including user searches.
-        eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artists.\n3.Return\n")
-        while True:    
+        while True: 
+            eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artists.\n3.Return\n")
             if eightinput == "1":
                 #These are options relating to artworks.
                 while True:
@@ -285,8 +285,6 @@ while True:
                                     print("Please enter numbers seperated by a comma.")    
                     elif artistvsart == "5":
                         break
-                else:
-                    print("That was not a valid option.") 
             elif eightinput == "3":
                 break
             else:

@@ -242,14 +242,14 @@ while True:
                     artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Return\n")
                     if artvsartistinput == "1":
                         #this options finds a specific artwork the user searches for.
-                        printcolumn = "was no artwork called "
+                        printcolumn = "was no artwork called"
                         column = "Artwork.Name"
                         specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
                         print_all_artworks_sorted_with_where(specific)
                     elif artvsartistinput == "2":
                         #This option finds all artworks with a specific style the user would like.
                         column = "Artwork.Style"
-                        printcolumn = "were no artworks in the style"
+                        printcolumn = "were no artworks in the style,"
                         specific = input("Please type the style of the artworks you would like.(correctly with capitals): ")
                         print_all_artworks_sorted_with_where(specific)
                     elif artvsartistinput == "3":
@@ -276,7 +276,7 @@ while True:
                     if artistvsart == "1":
                         #This brings up specific information about only one artist
                         column = "Artist.Artist_name"
-                        printcolumn = "was no Artist called"
+                        printcolumn = "is no Artist called"
                         specific = input("Please type the name of the artist you would like(correctly with capitals): ")
                         print_all_artists_sorted_with_where(specific)
                     elif artistvsart == "2":

@@ -141,15 +141,18 @@ def print_all_artworks_sorted_with_where_with_between(x,y):
 
     results = cursor.fetchall()
 
-    #loop through results
-
-    print(f"                       Name             Artist               Style     Year made    Price($)\n")
-
-    for Artwork in results:
+    
+    #if there are results
+    if results:
+        print(f"                       Name             Artist               Style     Year made    Price($)\n")
+         #loop through results
+        for Artwork in results:
             
-            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
-
-    #loop finishes here
+                print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+                #loop finishes here
+    else:
+        print(f"\nThere were no artworks made from the years {x} and {y}.")
+    
         
     db.close()
 

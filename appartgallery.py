@@ -117,15 +117,19 @@ def print_all_artists_sorted_with_where(specific):
 
     results = cursor.fetchall()
 
-    #loop through results
-
-    print(f"                  Name   Year born        Country\n")
-
-    for Artist in results:
+    
+    #if there are results
+    if results:
+         
+        print(f"                  Name   Year born        Country\n")
+        #loop through results
+        for Artist in results:
             
-            print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
-
-    #loop finishes here
+                print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+                #loop finishes here
+    else:
+        print(f"\nThere were no {printcolumn}/s with {specific}.")
+            
         
     db.close()
 
@@ -230,12 +234,14 @@ while True:
                     artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Return\n")
                     if artvsartistinput == "1":
                         #this options finds a specific artwork the user searches for.
+                        printcolumn = "Artwork/s"
                         column = "Artwork.Name"
                         specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
                         print_all_artworks_sorted_with_where(specific)
                     elif artvsartistinput == "2":
                         #This option finds all artworks with a specific style the user would like.
                         column = "Artwork.Style"
+                        printcolumn = "Style/s"
                         specific = input("Please type the style of the artworks you would like.(correctly with capitals): ")
                         print_all_artworks_sorted_with_where(specific)
                     elif artvsartistinput == "3":
@@ -262,16 +268,19 @@ while True:
                     if artistvsart == "1":
                         #This brings up specific information about only one artist
                         column = "Artist.Artist_name"
+                        printcolumn = "Artist/s"
                         specific = input("Please type the name of the artist you would like(correctly with capitals): ")
                         print_all_artists_sorted_with_where(specific)
                     elif artistvsart == "2":
                         #This find all artists from a country the user chooses.
                         column = "Artist.Country"
+                        printcolumn = "Country/ies"
                         specific = input("Please type the name of the country you would like(correctly with capitals): ")
                         print_all_artists_sorted_with_where(specific)
                     elif artistvsart == "3":
                         #This finds all paintings from one specific artist.
                         column = "Artist.Artist_name"
+                        printcolumn = "Artist/s"
                         specific = input("Please type the name of the artist for the artworks you would like(correctly with capitals): ")
                         print_all_artworks_sorted_with_where(specific)
                     elif artistvsart == "4":

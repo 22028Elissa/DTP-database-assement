@@ -12,6 +12,13 @@ from email.message import EmailMessage
 import ssl
 import smtplib
 
+#vufo musw shlt xyci
+#Email information
+email_sender = 'ilovemolang777@gmail.com'
+email_password = 'vufomuswshltxyci'
+email_receiver = '22028@burnside.school.nz'
+
+
 #login/create acc
 
 def print_all_artworks_with_artists():

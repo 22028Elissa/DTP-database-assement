@@ -21,9 +21,18 @@ email_receiver = '22028@burnside.school.nz'
 #message of the email
 subject = 'Thanks from sw4t art gallery.'
 body = """
+#LINK
 Is this the artwork you wanted? If not email us back.
 From Sweeeet Art Gallery <3 :3
 """
+
+#Send the email
+em = EmailMessage()
+em['From'] = email_sender
+em ['To'] = email_receiver
+em['Subject'] = subject
+em.set_content(body)
+
 
 
 #login/create acc

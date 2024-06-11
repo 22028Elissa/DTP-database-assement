@@ -42,8 +42,6 @@ with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
     smtp.login(email_sender, email_password)
     smtp.sendmail(email_sender, email_receiver, em.as_string())
 
-
-
 #login/create acc
 
 def print_all_artworks_with_artists():
@@ -218,10 +216,18 @@ def print_all_artists_sorted_with_where_with_between(x,y):
 
 #main code
 #Welcome user
-print("Welcome to the Art Gallery database!\n")
-#print("If you would just like to view the artworks but don't want to buy them, username: guest, password: gpassword")
-#while True:
-#    log = input("\n1. Login\n2. Create account.\n")
+print("Welcome to the Sweee+ Ar+ Ga11ery da+abase!\n")
+print("If you would just like to view the artworks but don't want to buy them, username: guest, password: gpassword")
+while True:
+    logornew = input("\n1.Login\n2.Create a new account.\n")
+    if logornew == "1":
+         
+    elif logornew == "2":
+        uname = input("Think of a great name for your account username:")
+        pword = input("Password please:")
+    else:
+        print("Please enter 1 or 2   :p")
+        
 #login system
 #Loop fof user options.
 while True:

@@ -213,7 +213,7 @@ def print_all_artists_sorted_with_where_with_between(x,y):
     db.close()
 
 
-
+accid = 3
 #main code
 #Welcome user
 print("Welcome to the Sweee+ Ar+ Ga11ery da+abase!\n")
@@ -333,8 +333,8 @@ while True:
                                             print("Please enter numbers seperated by a comma.")    
                             elif artistvsart == "5":
                                 break
-                        else:
-                            print("That was not a valid option.") 
+                            else:
+                                print("That was not a valid option.") 
                     elif eightinput == "3":
                         break
                     else:
@@ -343,17 +343,20 @@ while True:
                 break 
             else:
                 print("That was not a valid option. Please try again :O")  
-            
-            
-
-
     elif logornew == "2":
+        db = sqlite3.connect(DATABASE)
+        cursor = db.cursor()
+
         Uname = input("Think of a great name for your account username:")
         Pword = input("Password please:")
         Email = input("Email:")
-        cursor. execute("INSERT INITO accounts VALUES(?, ?)", [Uname, Pword])
-        cursor.commit
 
+        cursor.execute("INSERT INTO accounts VALUES(?, ?, ?, ?)", [accid, Uname, Pword, Email])
+        accid += 1
+        db.commit()
+        db.close()
+
+        print("Added")
     else:
         print("Please enter 1 or 2   :p")
 

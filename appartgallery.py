@@ -221,10 +221,26 @@ print("If you would just like to view the artworks but don't want to buy them, u
 while True:
     logornew = input("\n1.Login\n2.Create a new account.\n")
     if logornew == "1":
-         
+        Uname = input("Username:")
+        Pword = input("Password:")
+        db = sqlite3.connect(DATABASE)
+
+        cursor = db.cursor()
+
+        sql = "SELECT * FROM Accounts WHERE Uname=? and pwd=?", [Uname, pwd]
+        print(cursor.fetchone())
+
+        cursor.execute(sql)
+
+        db.close()
+        print("New level unlocked!")
     elif logornew == "2":
-        uname = input("Think of a great name for your account username:")
-        pword = input("Password please:")
+        Uname = input("Think of a great name for your account username:")
+        Pword = input("Password please:")
+        Email = input("Email:")
+        cursor. execute("INSERT INITO accounts VALUES(?, ?)", [Uname, Pword])
+        cursor.commit
+
     else:
         print("Please enter 1 or 2   :p")
         

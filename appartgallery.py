@@ -19,11 +19,13 @@ email_password = 'vufomuswshltxyci'
 email_receiver = '22028@burnside.school.nz'
 
 #message of the email
-subject = 'Thanks from sw4t art gallery.'
+subject = '~Thanks from sweeeet art gallery~'
 body = """
 #LINK
 Is this the artwork you wanted? If not email us back.
 From Sweeeet Art Gallery <3 :3
+
+> > > # the Sweeeet delivery mail service. < < <
 """
 
 #Send the email
@@ -32,6 +34,13 @@ em['From'] = email_sender
 em ['To'] = email_receiver
 em['Subject'] = subject
 em.set_content(body)
+
+#Addeing the smtp server and connecting the email
+context = ssl.create_default_context()
+
+with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+    smtp.login(email_sender, email_password)
+    smtp.sendmail(email_sender, email_receiver, em.as_string())
 
 
 

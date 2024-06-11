@@ -18,6 +18,13 @@ email_sender = 'ilovemolang777@gmail.com'
 email_password = 'vufomuswshltxyci'
 email_receiver = '22028@burnside.school.nz'
 
+#message of the email
+subject = 'Thanks from sw4t art gallery.'
+body = """
+Is this the artwork you wanted? If not email us back.
+From Sweeeet Art Gallery <3 :3
+"""
+
 
 #login/create acc
 

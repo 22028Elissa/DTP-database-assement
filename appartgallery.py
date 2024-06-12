@@ -183,11 +183,6 @@ def print_all_artists_sorted_with_where_with_between(x,y):
 
     cursor.execute(sql)
 
-    if cursor.fetchone() == None:
-        print("Sorry this doesn't work")
-    else:
-        Link = cursor.fetchone
-
     if results:
         #loop through results
 
@@ -204,7 +199,9 @@ def print_all_artists_sorted_with_where_with_between(x,y):
     db.close()
 #Send an email to this acc
 def print_all_artworks_sorted_with_where_mail(specific):
+    global Link
     '''Print all artworks with where sorted by variable. Options 8,1,1-2'''
+    
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
@@ -213,6 +210,7 @@ def print_all_artworks_sorted_with_where_mail(specific):
 
     cursor.execute(sql)
 
+    
     Link = cursor.fetchone()
     
     db.close()
@@ -351,46 +349,51 @@ while True:
                                     break
                                 else:
                                     print("That was not a valid option.") 
-                        elif userinput == "9":   
-                            if Uname = "guest":
-                                print("Sorry, guests do not get emails")
-                                break
-                            else:
-                                column = "Artwork.Name"
-                                specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
-                                #Email information
-                                email_sender = 'sweeeetartgallery@gmail.com'
-                                email_password = 'vufomuswshltxyci'
-                                email_receiver = Email
+                elif userinput == "9":   
+                    if Uname == "guest":
+                        print("Sorry, guests do not get emails")
+                        break
+                    else:
+                        column = "Artwork.Name"
+                        specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
+                        #Email information
+                        email_sender = 'sweeeetartgallery@gmail.com'
+                        email_password = 'vufomuswshltxyci'
+                        sql = f"SELECT Email FROM Accounts WHERE Uname = '{Uname}'"
+                        db = sqlite3.connect(DATABASE)
 
-                                #message of the email
-                                subject = '~Thanks from sweeeet art gallery~'
-                                body = f"""
-                                {Link}
-                                Is this the artwork you wanted? If not email us back.
-                                From Sweeeet Art Gallery <3 :3
+                        cursor = db.cursor()
+                        cursor.execute(sql)
 
-                                > > > # the Sweeeet delivery mail service. < < <
-                                """
+                        email_receiver = cursor.fetchone()
+                        #message of the email
+                        subject = '~Thanks from sweeeet art gallery~'
+                        body = f"""
+                        {Link}
+                        Is this the artwork you wanted? If not email us back.
+                        From Sweeeet Art Gallery <3 :3
 
-                                #Send the email
-                                em = EmailMessage()
-                                em['From'] = email_sender
-                                em ['To'] = email_receiver
-                                em['Subject'] = subject
-                                em.set_content(body)
+                        > > > # the Sweeeet delivery mail service. < < <
+                        """
+                        db.close()
+                        #Send the email
+                        em = EmailMessage()
+                        em['From'] = email_sender
+                        em ['To'] = email_receiver
+                        em['Subject'] = subject
+                        em.set_content(body)
 
-                                #Addeing the smtp server and connecting the email
-                                context = ssl.create_default_context()
+                        #Addeing the smtp server and connecting the email
+                        context = ssl.create_default_context()
 
-                                with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-                                    smtp.login(email_sender, email_password)
-                                    smtp.sendmail(email_sender, email_receiver, em.as_string())
+                        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+                            smtp.login(email_sender, email_password)
+                            smtp.sendmail(email_sender, email_receiver, em.as_string())
 
-                        elif userinput == "10":
-                            break 
-                        else:
-                            print("That was not a valid option. Please try again :O")  
+                elif userinput == "10":
+                    break 
+                else:
+                    print("That was not a valid option. Please try again :O")  
     elif logornew == "2":
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
@@ -399,8 +402,8 @@ while True:
         Pword = input("Password please:")
         Email = input("Email:")
         
-        cursor.execute("INSERT INTO accounts VALUES(?, ?, ?, ?)", [accid, Uname, Pword, Email])
-        accid += 1
+        cursor.execute("INSERT INTO accounts (Uname, Pword, Email) VALUES( ?, ?, ?)", [Uname, Pword, Email])
+        
         db.commit()
         db.close()
 

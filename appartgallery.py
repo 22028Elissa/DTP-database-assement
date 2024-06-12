@@ -297,7 +297,7 @@ while True:
                                             column = "Artwork.Year_made"
                                             while True:
                                                 try:
-                                                    x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
+                                                    x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split("-")
                                                     x = int(x)
                                                     y = int(y)
                                                     print_all_artworks_sorted_with_where_with_between(x,y)

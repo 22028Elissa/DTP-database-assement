@@ -198,20 +198,20 @@ def print_all_artists_sorted_with_where_with_between(x,y):
         
     db.close()
 #Send an email to this acc
-def print_all_artworks_sorted_with_where_mail(specific):
+def find_the_link_all_artworks_sorted_with_mail(specific):
     global Link
-    '''Print all artworks with where sorted by variable. Options 8,1,1-2'''
+    '''Send an email with one artwork'''
     
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
 
-    sql = (f"Artwork.Link FROM Artwork WHERE {column} =  '{specific}'")
+    sql = f"SELECT Artwork.Link FROM Artwork WHERE {column} = '{specific}'"
 
     cursor.execute(sql)
-
     
-    Link = cursor.fetchone()
+    Link = cursor.fetchall()
+    Link = str(Link)
     
     db.close()
 accid = 3
@@ -351,11 +351,12 @@ while True:
                                     print("That was not a valid option.") 
                 elif userinput == "9":   
                     if Uname == "guest":
-                        print("Sorry, guests do not get emails")
+                        print("Sorry, guests do not get emails.")
                         break
                     else:
                         column = "Artwork.Name"
                         specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
+                        find_the_link_all_artworks_sorted_with_mail(specific)
                         #Email information
                         email_sender = 'sweeeetartgallery@gmail.com'
                         email_password = 'vufomuswshltxyci'
@@ -365,7 +366,7 @@ while True:
                         cursor = db.cursor()
                         cursor.execute(sql)
 
-                        email_receiver = cursor.fetchone()
+                        email_receiver = cursor.fetchall()
                         #message of the email
                         subject = '~Thanks from sweeeet art gallery~'
                         body = f"""
@@ -389,7 +390,7 @@ while True:
                         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
                             smtp.login(email_sender, email_password)
                             smtp.sendmail(email_sender, email_receiver, em.as_string())
-
+                        print("Sent ! ")
                 elif userinput == "10":
                     break 
                 else:

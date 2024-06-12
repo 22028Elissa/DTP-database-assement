@@ -217,10 +217,10 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
 accid = 3
 #main code
 #Welcome user
-print("Welcome to the Sweee+ Ar+ Ga11ery da+abase!\n")
+print("\nWelcome to the Sweee+ Ar+ Ga11ery da+abase!")
 print("If you would just like to view the artworks but don't want to buy them, username: guest, password: gpassword")
 while True:
-    logornew = input("\n1.Login\n2.Create a new account.\n")
+    logornew = input("\n1.Login\n2.Create a new account\n")
     if logornew == "1":
         Uname = input("Username:")
         Pword = input("Password:")
@@ -301,7 +301,7 @@ while True:
                                             break
                                         except ValueError:
                                             #This catches exceptions where the input are not numbers.
-                                            print("Please enter numbers seperated by a comma.")    
+                                            print("Please enter numbers seperated by a hyphen.")    
                                 elif artvsartistinput == "4":
                                     break
                                 else:
@@ -339,7 +339,7 @@ while True:
                                             print_all_artists_sorted_with_where_with_between(x,y)
                                             break
                                         except ValueError:
-                                                print("Please enter numbers seperated by a comma.")    
+                                                print("Please enter numbers seperated by a hyphen.")    
                                 elif artistvsart == "5":
                                     break
                         elif eightinput == "3":

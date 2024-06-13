@@ -15,6 +15,8 @@ import smtplib
 #vufo musw shlt xyci
 
 #login/create acc
+#list so uname is not duplicated
+Unamelist = ['Owner', 'Guest']
 
 def print_all_artworks_with_artists():
     '''Print all artworks with artists nicely for option 1'''
@@ -87,7 +89,6 @@ def print_all_artists_sorted_(sortedway):
     #loop finishes here
         
     db.close()
-
 
 def print_all_artworks_sorted_with_where(specific):
     '''Print all artworks with where sorted by variable. Options 8,1,1-2'''
@@ -183,6 +184,8 @@ def print_all_artists_sorted_with_where_with_between(x,y):
 
     cursor.execute(sql)
 
+    results = cursor.fetchall()
+
     if results:
         #loop through results
 
@@ -247,10 +250,7 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
             smtp.login(email_sender, email_password)
             smtp.sendmail(email_sender, email_receiver, em.as_string())
-            print("Sent ! ")
-        
-        
-        
+            print("Sent ! ") 
     else:
         print("We don't have a link yet, or perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~")
 #main code
@@ -267,8 +267,6 @@ while True:
         cursor = db.cursor()
 
         sql = "SELECT * FROM Accounts WHERE Uname=? and Pword=?", [Uname, Pword]
-
-        Accid = "Select id From Accounts WHERE Uname=? and Pword=?", [Uname, Pword]
         
         cursor.execute(*sql)
 
@@ -402,19 +400,43 @@ while True:
         cursor = db.cursor()
         while True:
             Uname = input("Think of a great name for your account username: ")
-            Pword = input("Password please: ")
-            #If uname is already in database.
-            if Uname :
-            # If email is already in database
-            Email = input("Email: ")
-            break 
             
-        cursor.execute("INSERT INTO accounts (Uname, Pword, Email) VALUES( ?, ?, ?)", [Uname, Pword, Email])
-        
-        db.commit()
-        db.close()
+            db = sqlite3.connect(DATABASE)
 
-        print("Added")
+            cursor = db.cursor()
+
+            cursor.execute("INSERT INTO accounts (Uname) VALUES(?)", [Uname])
+
+            sql = "SELECT COUNT(Uname) FROM Accounts GROUP BY Uname HAVING COUNT(Uname) > 1"
+
+            cursor.execute(sql)
+    
+            results = cursor.fetchone()
+
+            #If uname is already in database. The amount of times it appears is over 1
+            if results == None or results == 1:
+                Pword = input("Password please: ")
+                Email = input("Email: ")
+                db = sqlite3.connect(DATABASE)
+
+                cursor = db.cursor()
+
+                cursor.execute("INSERT INTO accounts (Uname, Pword, Email) VALUES( ?, ?, ?)", [Uname, Pword, Email])
+
+                db.commit()
+
+                db.close()
+                print("Added")
+                break 
+                
+            else:
+                cursor.execute(f"DELETE FROM Accounts WHERE Uname='{Uname}';")
+
+                print("Sorry, that username is taken.")
+
+                db.commit()
+
+                db.close()
     else:
         print("Please enter 1 or 2   :p")
 

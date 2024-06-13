@@ -220,6 +220,7 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
         db = sqlite3.connect(DATABASE)
 
         cursor = db.cursor()
+
         cursor.execute(sql)
 
         email_receiver = cursor.fetchall()
@@ -266,6 +267,8 @@ while True:
         cursor = db.cursor()
 
         sql = "SELECT * FROM Accounts WHERE Uname=? and Pword=?", [Uname, Pword]
+
+        Accid = "Select id From Accounts WHERE Uname=? and Pword=?", [Uname, Pword]
         
         cursor.execute(*sql)
 
@@ -397,11 +400,15 @@ while True:
     elif logornew == "2":
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
-
-        Uname = input("Think of a great name for your account username: ")
-        Pword = input("Password please: ")
-        Email = input("Email: ")
-        
+        while True:
+            Uname = input("Think of a great name for your account username: ")
+            Pword = input("Password please: ")
+            #If uname is already in database.
+            if Uname :
+            # If email is already in database
+            Email = input("Email: ")
+            break 
+            
         cursor.execute("INSERT INTO accounts (Uname, Pword, Email) VALUES( ?, ?, ?)", [Uname, Pword, Email])
         
         db.commit()

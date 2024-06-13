@@ -398,9 +398,9 @@ while True:
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
 
-        Uname = input("Think of a great name for your account username:")
-        Pword = input("Password please:")
-        Email = input("Email:")
+        Uname = input("Think of a great name for your account username: ")
+        Pword = input("Password please: ")
+        Email = input("Email: ")
         
         cursor.execute("INSERT INTO accounts (Uname, Pword, Email) VALUES( ?, ?, ?)", [Uname, Pword, Email])
         

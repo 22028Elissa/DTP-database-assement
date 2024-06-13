@@ -210,7 +210,7 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
 
     cursor.execute(sql)
     
-    Link = cursor.fetchall()
+    Link = cursor.fetchone()[0]
     
     if Link:
         #Email information
@@ -246,11 +246,12 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
             smtp.login(email_sender, email_password)
             smtp.sendmail(email_sender, email_receiver, em.as_string())
-        print("Sent ! ")
+            print("Sent ! ")
         
-        db.close()
-    print("We don't have a link yet, or perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~"")
-accid = 3
+        
+        
+    else:
+        print("We don't have a link yet, or perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~")
 #main code
 #Welcome user
 print("Welcome to the Sweee+ Ar+ Ga11ery da+abase!\n")

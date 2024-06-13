@@ -211,9 +211,45 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
     cursor.execute(sql)
     
     Link = cursor.fetchall()
-    Link = str(Link)
     
-    db.close()
+    if Link:
+        #Email information
+        email_sender = 'sweeeetartgallery@gmail.com'
+        email_password = 'vufomuswshltxyci'
+        sql = f"SELECT Email FROM Accounts WHERE Uname = '{Uname}'"
+        db = sqlite3.connect(DATABASE)
+
+        cursor = db.cursor()
+        cursor.execute(sql)
+
+        email_receiver = cursor.fetchall()
+        #message of the email
+        subject = '~Thanks from sweeeet art gallery~'
+        body = f"""
+        {Link}
+        Is this the artwork you wanted? If not email us back.
+        From Sweeeet Art Gallery <3 :3
+
+        > > > # the Sweeeet delivery mail service. < < <
+        """
+        db.close()
+        #Send the email
+        em = EmailMessage()
+        em['From'] = email_sender
+        em ['To'] = email_receiver
+        em['Subject'] = subject
+        em.set_content(body)
+
+        #Addeing the smtp server and connecting the email
+        context = ssl.create_default_context()
+
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+            smtp.login(email_sender, email_password)
+            smtp.sendmail(email_sender, email_receiver, em.as_string())
+        print("Sent ! ")
+        
+        db.close()
+    print("We don't have a link yet, or perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~"")
 accid = 3
 #main code
 #Welcome user
@@ -353,40 +389,6 @@ while True:
                         column = "Artwork.Name"
                         specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
                         find_the_link_all_artworks_sorted_with_mail(specific)
-                        #Email information
-                        email_sender = 'sweeeetartgallery@gmail.com'
-                        email_password = 'vufomuswshltxyci'
-                        sql = f"SELECT Email FROM Accounts WHERE Uname = '{Uname}'"
-                        db = sqlite3.connect(DATABASE)
-
-                        cursor = db.cursor()
-                        cursor.execute(sql)
-
-                        email_receiver = cursor.fetchall()
-                        #message of the email
-                        subject = '~Thanks from sweeeet art gallery~'
-                        body = f"""
-                        {Link}
-                        Is this the artwork you wanted? If not email us back.
-                        From Sweeeet Art Gallery <3 :3
-
-                        > > > # the Sweeeet delivery mail service. < < <
-                        """
-                        db.close()
-                        #Send the email
-                        em = EmailMessage()
-                        em['From'] = email_sender
-                        em ['To'] = email_receiver
-                        em['Subject'] = subject
-                        em.set_content(body)
-
-                        #Addeing the smtp server and connecting the email
-                        context = ssl.create_default_context()
-
-                        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-                            smtp.login(email_sender, email_password)
-                            smtp.sendmail(email_sender, email_receiver, em.as_string())
-                        print("Sent ! ")
                 elif userinput == "10":
                     break 
                 else:

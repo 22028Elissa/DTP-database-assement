@@ -36,7 +36,7 @@ def print_all_artworks_with_artists():
 
     for Artwork in results:
             
-            print(f"{Artwork[0]:>32}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[9]:>20}{Artwork[5]:>10}{Artwork[6]:>15}")
+            print(f"{Artwork[0]:>32}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>25}{Artwork[5]:>10}{Artwork[6]:>15}")
 
         #loop finishes here
             
@@ -258,8 +258,8 @@ print("If you would just like to view the artworks but don't want to buy them, u
 while True:
     logornew = input("\n1.Login\n2.Create a new account.\n")
     if logornew == "1":
-        Uname = input("Username:")
-        Pword = input("Password:")
+        Uname = input("Username: ")
+        Pword = input("Password: ")
         db = sqlite3.connect(DATABASE)
 
         cursor = db.cursor()

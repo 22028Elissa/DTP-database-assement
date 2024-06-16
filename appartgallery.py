@@ -399,44 +399,31 @@ while True:
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
         while True:
-            Uname = input("Think of a great name for your account username: ")
-            
-            db = sqlite3.connect(DATABASE)
-
-            cursor = db.cursor()
-
-            cursor.execute("INSERT INTO accounts (Uname) VALUES(?)", [Uname])
-
-            sql = "SELECT COUNT(Uname) FROM Accounts GROUP BY Uname HAVING COUNT(Uname) > 1"
-
-            cursor.execute(sql)
-    
-            results = cursor.fetchone()
-
-            #If uname is already in database. The amount of times it appears is over 1
-            if results == None or results == 1:
-                Pword = input("Password please: ")
-                Email = input("Email: ")
+            try:
                 db = sqlite3.connect(DATABASE)
 
                 cursor = db.cursor()
 
-                cursor.execute("INSERT INTO accounts (Uname, Pword, Email) VALUES( ?, ?, ?)", [Uname, Pword, Email])
+                Uname = input("Think of a great name for your account username: ")
+                cursor.execute("INSERT INTO accounts (Uname) VALUES(?)", [Uname])
+
+            except:
+                #If uname is already in database. The amount of times it appears is over 1
+                print("Sorry, that username is taken.")
+            else:
+
+                Pword = input("Password please: ")
+
+                Email = input("Email: ")
+                
+                cursor.execute(f"UPDATE Accounts SET Pword = '{Pword}', Email = '{Email}'  WHERE Uname = '{Uname}'")
 
                 db.commit()
 
                 db.close()
+
                 print("Added")
                 break 
-                
-            else:
-                cursor.execute(f"DELETE FROM Accounts WHERE Uname='{Uname}';")
-
-                print("Sorry, that username is taken.")
-
-                db.commit()
-
-                db.close()
     else:
         print("Please enter 1 or 2   :p")
 

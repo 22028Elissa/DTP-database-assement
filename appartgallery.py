@@ -202,9 +202,7 @@ def print_all_artists_sorted_with_where_with_between(x,y):
     db.close()
 #Send an email to this acc
 def find_the_link_all_artworks_sorted_with_mail(specific):
-    global Link
     '''Send an email with one artwork'''
-    
     db = sqlite3.connect(DATABASE)
     
     cursor = db.cursor()
@@ -213,7 +211,7 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
 
     cursor.execute(sql)
     
-    Link = cursor.fetchone()[0]
+    Link = cursor.fetchone()
     
     if Link:
         #Email information

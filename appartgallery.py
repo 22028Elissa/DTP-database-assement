@@ -32,11 +32,11 @@ def print_all_artworks_with_artists():
 
     #loop through results
 
-    print(f"                       Name               Style    Year made    Price($)             Artist Year born        Country\n")
+    print(f"                            Name               Style    Year made    Price($)                  Artist Year born        Country\n")
 
     for Artwork in results:
             
-            print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>20}{Artwork[5]:>10}{Artwork[6]:>15}")
+            print(f"{Artwork[0]:>32}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[9]:>20}{Artwork[5]:>10}{Artwork[6]:>15}")
 
         #loop finishes here
             

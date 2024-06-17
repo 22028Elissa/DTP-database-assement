@@ -32,11 +32,11 @@ def print_all_artworks_with_artists():
 
     #loop through results
 
-    print(f"                                 Name               Style    Year made    Price($)                       Artist Year born        Country\n")
+    print(f"                                 Name                    Style    Year made    Price($)                       Artist Year born           Country\n")
 
     for Artwork in results:
             
-            print(f"{Artwork[0]:>37}{Artwork[1]:>20}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>30}{Artwork[5]:>10}{Artwork[6]:>15}")
+            print(f"{Artwork[0]:>37}{Artwork[1]:>25}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>30}{Artwork[5]:>10}{Artwork[6]:>18}")
 
         #loop finishes here
             
@@ -56,11 +56,11 @@ def print_all_artworks_sorted_(sortedway):
 
     #loop through results
 
-    print(f"                                 Name                       Artist               Style     Year made    Price($)\n")
+    print(f"                                 Name                       Artist                    Style     Year made    Price($)\n")
 
     for Artwork in results:
             
-            print(f"{Artwork[0]:>37}{Artwork[1]:>30}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+            print(f"{Artwork[0]:>37}{Artwork[1]:>30}{Artwork[2]:>25}{Artwork[3]:>13}{Artwork[4]:>10}M")
 
     #loop finishes here
         
@@ -80,11 +80,11 @@ def print_all_artists_sorted_(sortedway):
 
     #loop through results
 
-    print(f"                  Name   Year born        Country\n")
+    print(f"                            Name   Year born           Country\n")
 
     for Artist in results:
             
-            print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+            print(f"{Artist[0]:>32}{Artist[1]:>12}{Artist[2]:>18}")
 
     #loop finishes here
         
@@ -107,11 +107,11 @@ def print_all_artworks_sorted_with_where(specific):
     
         #loop through results
 
-        print(f"                       Name             Artist               Style     Year made    Price($)\n")
+        print(f"                                 Name                       Artist                    Style     Year made    Price($)\n")
 
         for Artwork in results:
                 
-                print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+                print(f"{Artwork[0]:>37}{Artwork[1]:>30}{Artwork[2]:>25}{Artwork[3]:>13}{Artwork[4]:>10}M")
 
         #loop finishes here
     else:
@@ -135,11 +135,11 @@ def print_all_artists_sorted_with_where(specific):
     #if there are results
     if results:
          
-        print(f"                  Name   Year born        Country\n")
+        print(f"                            Name   Year born           Country\n")
         #loop through results
         for Artist in results:
             
-                print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+                print(f"{Artist[0]:>32}{Artist[1]:>12}{Artist[2]:>18}")
                 #loop finishes here
     else:
         print(f"\nThere {printcolumn} {specific}.")
@@ -162,11 +162,11 @@ def print_all_artworks_sorted_with_where_with_between(x,y):
     
     #if there are results
     if results:
-        print(f"                       Name             Artist               Style     Year made    Price($)\n")
+        print(f"                                 Name                  Artist                    Style     Year made    Price($)\n")
          #loop through results
         for Artwork in results:
             
-                print(f"{Artwork[0]:>27}{Artwork[1]:>20}{Artwork[2]:>20}{Artwork[3]:>13}{Artwork[4]:>10}M")
+                print(f"{Artwork[0]:>37}{Artwork[1]:>25}{Artwork[2]:>25}{Artwork[3]:>13}{Artwork[4]:>10}M")
                 #loop finishes here
     else:
         print(f"\nThere were no artworks made from the years {x} and {y}.")
@@ -189,11 +189,11 @@ def print_all_artists_sorted_with_where_with_between(x,y):
     if results:
         #loop through results
 
-        print(f"                  Name   Year born        Country\n")
+        print(f"                       Name   Year born           Country\n")
 
         for Artist in results:
                 
-                print(f"{Artist[0]:>22}{Artist[1]:>12}{Artist[2]:>15}")
+                print(f"{Artist[0]:>27}{Artist[1]:>12}{Artist[2]:>18}")
                 #loop finishes here
 
     else:

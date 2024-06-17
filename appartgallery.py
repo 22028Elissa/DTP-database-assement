@@ -202,6 +202,7 @@ def print_all_artists_sorted_with_where_with_between(x,y):
     db.close()
 #Send an email to this acc
 def find_the_link_all_artworks_sorted_with_mail(specific):
+    global Link
     '''Send an email with one artwork'''
     db = sqlite3.connect(DATABASE)
     
@@ -211,46 +212,66 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
 
     cursor.execute(sql)
     
-    Link = cursor.fetchone()
+    Link = cursor.fetchall()
     
-    if Link:
-        #Email information
-        email_sender = 'sweeeetartgallery@gmail.com'
-        email_password = 'vufomuswshltxyci'
-        sql = f"SELECT Email FROM Accounts WHERE Uname = '{Uname}'"
-        db = sqlite3.connect(DATABASE)
-
-        cursor = db.cursor()
-
-        cursor.execute(sql)
-
-        email_receiver = cursor.fetchall()
-        #message of the email
-        subject = '~Thanks from sweeeet art gallery~'
-        body = f"""
-        {Link}
-        Is this the artwork you wanted? If not email us back.
-        From Sweeeet Art Gallery <3 :3
-
-        > > > # the Sweeeet delivery mail service. < < <
-        """
-        db.close()
-        #Send the email
-        em = EmailMessage()
-        em['From'] = email_sender
-        em ['To'] = email_receiver
-        em['Subject'] = subject
-        em.set_content(body)
-
-        #Addeing the smtp server and connecting the email
-        context = ssl.create_default_context()
-
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-            smtp.login(email_sender, email_password)
-            smtp.sendmail(email_sender, email_receiver, em.as_string())
-            print("Sent ! ") 
+    if not Link:
+        print("We don't have a link yet, or perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~")     
     else:
-        print("We don't have a link yet, or perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~")
+        while True:
+            if len(Link) > 1 :
+            
+                db = sqlite3.connect(DATABASE)
+    
+                cursor = db.cursor()
+
+
+                artist = input(f"Please specify the artist as more than one painting has the name '{specific}': ")
+                sql = f"SELECT Artwork.Link FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist WHERE {column} = '{specific}' AND Artwork.Artist = '{artist}'"
+            
+                cursor.execute(sql)
+    
+                Link = cursor.fetchone()
+                if Link:
+                    break
+                else:
+                    print("Perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~")
+
+            else:
+                #Email information
+                email_sender = 'sweeeetartgallery@gmail.com'
+                email_password = 'vufomuswshltxyci'
+                sql = f"SELECT Email FROM Accounts WHERE Uname = '{Uname}'"
+                db = sqlite3.connect(DATABASE)
+
+                cursor = db.cursor()
+
+                cursor.execute(sql)
+
+                email_receiver = cursor.fetchall()
+                #message of the email
+                subject = '~Thanks from sweeeet art gallery~'
+                body = f"""
+                {Link}
+                Is this the artwork you wanted? If not email us back.
+                From Sweeeet Art Gallery <3 :3
+
+                > > > # the Sweeeet delivery mail service. < < <
+                """
+                db.close()
+                #Send the email
+                em = EmailMessage()
+                em['From'] = email_sender
+                em ['To'] = email_receiver
+                em['Subject'] = subject
+                em.set_content(body)
+
+                #Addeing the smtp server and connecting the email
+                context = ssl.create_default_context()
+
+                with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+                    smtp.login(email_sender, email_password)
+                    smtp.sendmail(email_sender, email_receiver, em.as_string())
+                    print("Sent ! ") 
 #main code
 #Welcome user
 print("Welcome to the Sweee+ Ar+ Ga11ery da+abase!\n")

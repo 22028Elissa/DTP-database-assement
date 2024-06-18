@@ -297,7 +297,7 @@ while True:
             #Loop fof user options.
             while True:
                 #Ask for user input
-                userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists sorted alphabetically.\n6.View all artists sorted by year born.\n7.View all artists sorted by country\n8.Choose a specific column or name to sort by.\n9.Send me an artwork!!!\n10.Exit\n")
+                userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists sorted alphabetically.\n6.View all artists sorted by year born.\n7.View all artists sorted by country\n8.Choose a specific column or name to sort by.\n9.Send me an artwork!!!\n10.Logout\n")
                 if userinput == "1":
                     #Print all artworks combined with artists table.
                     print_all_artworks_with_artists()
@@ -350,14 +350,14 @@ while True:
                                     column = "Artwork.Year_made"
                                     while True:
                                         try:
-                                            x,y = input("Please type the years of the artworks you would like(example- 1400,1500): ").split(",")
+                                            x,y = input("Please type the years of the artworks you would like(example- 1400-1500): ").split("-")
                                             x = int(x)
                                             y = int(y)
-                                            print_all_artworks_sorted_with_where_with_between(x,y)
+                                            print_all_artworks_sorted_with_where_with_between(x-y)
                                             break
                                         except ValueError:
                                             #This catches exceptions where the input are not numbers.
-                                            print("Please enter numbers seperated by a comma.")    
+                                            print("Please enter numbers seperated by a hyphen.")    
                                 elif artvsartistinput == "4":
                                     break
                                 else:
@@ -389,13 +389,13 @@ while True:
                                     #This finds all artists that were born between 2 years that the user chooses.
                                     while True:
                                         try:
-                                            x,y = input("Please type the years of artist's birth years you would like(example- 1400,1500): ").split(",")
+                                            x,y = input("Please type the years of artist's birth years you would like(example- 1400-1500): ").split("-")
                                             x = int(x)
                                             y = int(y)
-                                            print_all_artists_sorted_with_where_with_between(x,y)
+                                            print_all_artists_sorted_with_where_with_between(x-y)
                                             break
                                         except ValueError:
-                                                print("Please enter numbers seperated by a comma.")    
+                                                print("Please enter numbers seperated by a hyphen.")    
                                 elif artistvsart == "5":
                                     break
                         elif eightinput == "3":

@@ -288,7 +288,7 @@ while True:
             #Loop fof user options.
             while True:
                 #Ask for user input
-                userinput = input("\nHere are some options.\n\n1.View all artworks with artist information.\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists sorted alphabetically.\n6.View all artists sorted by year born.\n7.View all artists sorted by country\n8.Choose a specific column or name to sort by.\n9.Send me an artwork!!!\n10.Logout\n")
+                userinput = input("\nHere are some options.\n\n1.View all artworks with artist information\n2.View all artworks sorted alphabetically\n3.View all artworks sorted by year\n4.View all artworks sorted by price\n5.View all artists sorted alphabetically\n6.View all artists sorted by year born\n7.View all artists sorted by country\n8.Choose a specific column or name to sort by\n9.Send me an artwork!!!\n10.Logout\n")
                 if userinput == "1":
                     #Print all artworks combined with artists table.
                     print_all_artworks_with_artists()
@@ -319,11 +319,11 @@ while True:
                 elif userinput == "8":   
                     #There are more options including user searches.
                     while True: 
-                        eightinput = input("1.Specifics on Artworks.\n2.Specifics on Artists.\n3.Return\n")
+                        eightinput = input("1.Specifics on artworks.\n2.Specifics on artists.\n3.Return\n")
                         if eightinput == "1":
                         #These are options relating to artworks.
                             while True:
-                                artvsartistinput = input("\n1.To find one 'artwork'.\n2.All artworks with one style\n3.All artworks where the year made falls under(x-y)\n4.Return\n")
+                                artvsartistinput = input("\n1.To find one 'artwork'\n2.All artworks with one style\n3.Find all artworks where the year made falls under(x-y)\n4.Return\n")
                                 if artvsartistinput == "1":
                                 #this options finds a specific artwork the user searches for.
                                     printcolumn = "was no artwork called"
@@ -356,7 +356,7 @@ while True:
                         elif eightinput == "2":
                             while True:
                                 #These are options relating to artists.
-                                artistvsart = input("\n1.To find one artist.\n2.Find all Artists from one Country.\n3.Find all Artworks by one artist.\n4.Find all artists born in specific years.\n5.Return\n")
+                                artistvsart = input("\n1.To find one artist\n2.Find all artists from one country\n3.Find all artworks by one artist\n4.Find all artists born in specific years(x-y)\n5.Return\n")
                                 if artistvsart == "1":
                                     #This brings up specific information about only one artist
                                     column = "Artist.Artist_name"

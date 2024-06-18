@@ -2,7 +2,7 @@
 #import
 import sqlite3
 
-#Constants and variables
+#The database is called artgallery.db
 DATABASE = "artgallery.db"
 
 #functions
@@ -14,10 +14,7 @@ import smtplib
 
 #vufo musw shlt xyci
 
-#login/create acc
-#list so uname is not duplicated
-Unamelist = ['Owner', 'Guest']
-
+#Prints everything (from artworks and accounts table)
 def print_all_artworks_with_artists():
     '''Print all artworks with artists nicely for option 1'''
     db = sqlite3.connect(DATABASE)
@@ -31,14 +28,12 @@ def print_all_artworks_with_artists():
     results = cursor.fetchall()
 
     #loop through results
-
     print(f"                                 Name                    Style    Year made    Price($)                       Artist Year born           Country\n")
 
     for Artwork in results:
             
             print(f"{Artwork[0]:>37}{Artwork[1]:>25}{Artwork[2]:>13}{Artwork[3]:>10}M{Artwork[4]:>30}{Artwork[5]:>10}{Artwork[6]:>18}")
-
-        #loop finishes here
+            #loop finishes here
             
     db.close()
 
@@ -55,14 +50,12 @@ def print_all_artworks_sorted_(sortedway):
     results = cursor.fetchall()
 
     #loop through results
-
     print(f"                                 Name                       Artist                    Style     Year made    Price($)\n")
 
     for Artwork in results:
             
             print(f"{Artwork[0]:>37}{Artwork[1]:>30}{Artwork[2]:>25}{Artwork[3]:>13}{Artwork[4]:>10}M")
-
-    #loop finishes here
+            #loop finishes here
         
     db.close()
 
@@ -79,14 +72,12 @@ def print_all_artists_sorted_(sortedway):
     results = cursor.fetchall()
 
     #loop through results
-
     print(f"                            Name   Year born           Country\n")
 
     for Artist in results:
             
             print(f"{Artist[0]:>32}{Artist[1]:>12}{Artist[2]:>18}")
-
-    #loop finishes here
+            #loop finishes here
         
     db.close()
 
@@ -106,17 +97,14 @@ def print_all_artworks_sorted_with_where(specific):
     if results:
     
         #loop through results
-
         print(f"                                 Name                       Artist                    Style     Year made    Price($)\n")
 
         for Artwork in results:
                 
                 print(f"{Artwork[0]:>37}{Artwork[1]:>30}{Artwork[2]:>25}{Artwork[3]:>13}{Artwork[4]:>10}M")
-
-        #loop finishes here
+                 #loop finishes here
     else:
         print(f"\nThere {printcolumn} {specific}.")
-
     db.close()
  
 def print_all_artists_sorted_with_where(specific):
@@ -131,7 +119,6 @@ def print_all_artists_sorted_with_where(specific):
 
     results = cursor.fetchall()
 
-    
     #if there are results
     if results:
          
@@ -144,7 +131,6 @@ def print_all_artists_sorted_with_where(specific):
     else:
         print(f"\nThere {printcolumn} {specific}.")
             
-        
     db.close()
 
 def print_all_artworks_sorted_with_where_with_between(x,y):
@@ -159,7 +145,6 @@ def print_all_artworks_sorted_with_where_with_between(x,y):
 
     results = cursor.fetchall()
 
-    
     #if there are results
     if results:
         print(f"                                 Name                  Artist                    Style     Year made    Price($)\n")
@@ -169,8 +154,7 @@ def print_all_artworks_sorted_with_where_with_between(x,y):
                 print(f"{Artwork[0]:>37}{Artwork[1]:>25}{Artwork[2]:>25}{Artwork[3]:>13}{Artwork[4]:>10}M")
                 #loop finishes here
     else:
-        print(f"\nThere were no artworks made from the years {x} and {y}.")
-    
+        print(f"\nThere were no artworks made from the years {x} and {y}.") 
         
     db.close()
 
@@ -188,7 +172,6 @@ def print_all_artists_sorted_with_where_with_between(x,y):
 
     if results:
         #loop through results
-
         print(f"                       Name   Year born           Country\n")
 
         for Artist in results:
@@ -200,6 +183,7 @@ def print_all_artists_sorted_with_where_with_between(x,y):
         print(f"There were no artist born in the years {x} and {y}.")
         
     db.close()
+
 #Send an email to this acc
 def find_the_link_all_artworks_sorted_with_mail(specific):
     global Link
@@ -218,24 +202,25 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
         print("We don't have a link yet, or perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~")     
     else:
         while True:
-            if len(Link) > 1 :
+            if len(Link) > 1:
             
                 db = sqlite3.connect(DATABASE)
     
                 cursor = db.cursor()
 
+                artist = input(f"Please specify the artist as more than one painting has the name- '{specific}': ")
 
-                artist = input(f"Please specify the artist as more than one painting has the name '{specific}': ")
                 sql = f"SELECT Artwork.Link FROM Artwork JOIN Artist ON Artist.id=Artwork.Artist WHERE {column} = '{specific}' AND Artwork.Artist = '{artist}'"
             
                 cursor.execute(sql)
     
                 Link = cursor.fetchone()
+
+                #if the link exists
                 if Link:
                     break
                 else:
-                    print("Perhaps you typed the name wrong. Email sweeeetartgallery@gmail.com ~~")
-
+                    print("Perhaps you typed the Artist name wrong. Email sweeeetartgallery@gmail.com ~~")
             else:
                 try:
                     #Email information
@@ -266,13 +251,14 @@ def find_the_link_all_artworks_sorted_with_mail(specific):
                     em['Subject'] = subject
                     em.set_content(body)
 
-                    #Addeing the smtp server and connecting the email
+                    #Adding the smtp server and connecting the email
                     context = ssl.create_default_context()
 
                     with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
                         smtp.login(email_sender, email_password)
                         smtp.sendmail(email_sender, email_receiver, em.as_string())
                         print("Sent ! ") 
+                #Email does not send because email is invalid
                 except:
                     print("Your email does not seem to be valid.")
                     break
@@ -285,6 +271,7 @@ while True:
     if logornew == "1":
         Uname = input("Username: ")
         Pword = input("Password: ")
+
         db = sqlite3.connect(DATABASE)
 
         cursor = db.cursor()
@@ -361,7 +348,7 @@ while True:
                                             break
                                         except ValueError:
                                             #This catches exceptions where the input are not numbers.
-                                            print("Please enter numbers seperated by a hyphen.")    
+                                            print("Please enter numbers separated by a hyphen.")    
                                 elif artvsartistinput == "4":
                                     break
                                 else:
@@ -396,7 +383,7 @@ while True:
                                             x,y = input("Please type the years of artist's birth years you would like(example- 1400-1500): ").split("-")
                                             x = int(x)
                                             y = int(y)
-                                            print_all_artists_sorted_with_where_with_between(x-y)
+                                            print_all_artists_sorted_with_where_with_between(x,y)
                                             break
                                         except ValueError:
                                                 print("Please enter numbers seperated by a hyphen.")    
@@ -406,6 +393,7 @@ while True:
                             break
                         else:
                             print("That was not a valid option.") 
+                #mail option
                 elif userinput == "9":   
                     if Uname == "guest":
                         print("Sorry, guests do not get emails.")
@@ -414,27 +402,31 @@ while True:
                         column = "Artwork.Name"
                         specific = input("Please type the name of the artwork you would like.(correctly with capitals): ")
                         find_the_link_all_artworks_sorted_with_mail(specific)
+                #logout
                 elif userinput == "10":
                     break 
                 else:
-                    print("That was not a valid option. Please try again :O")  
+                    print("That was not a valid option. Please try again :O") 
+    #Create a new account 
     elif logornew == "2":
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
         while True:
+            #Try to insert the username but the db has a unique constraint for the column Uname
             try:
                 db = sqlite3.connect(DATABASE)
 
                 cursor = db.cursor()
 
                 Uname = input("Think of a great name for your account username: ")
+
                 cursor.execute("INSERT INTO accounts (Uname) VALUES(?)", [Uname])
 
             except:
-                #If uname is already in database. The amount of times it appears is over 1
                 print("Sorry, that username is taken.")
-            else:
 
+            else:
+                #If Uname is unique, ask for password and email.
                 Pword = input("Password please: ")
 
                 Email = input("Email: ")
@@ -446,6 +438,7 @@ while True:
                 db.close()
 
                 print("Added")
+                
                 break 
     else:
         print("Please enter 1 or 2   :p")
